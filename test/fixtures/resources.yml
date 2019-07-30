@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  interval: 1
+  nature: MyString
+  user: one
+
+two:
+  url: MyString
+  interval: 1
+  nature: MyString
+  user: two

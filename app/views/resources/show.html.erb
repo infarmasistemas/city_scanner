@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @resource.url %>
+</p>
+
+<p>
+  <strong>Interval:</strong>
+  <%= @resource.interval %>
+</p>
+
+<p>
+  <strong>Nature:</strong>
+  <%= @resource.nature %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @resource.user %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>
