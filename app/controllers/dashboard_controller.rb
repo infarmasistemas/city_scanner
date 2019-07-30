@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
     @resources = Resource.all
     @resources_up = Resource.up
     @resources_down = Resource.down
+    @logs = Log.all.order(id: :desc)
   end
 end

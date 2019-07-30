@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  response_code: MyString
+  response_body: MyString
+  exception: MyString
+  resource: one
+
+two:
+  response_code: MyString
+  response_body: MyString
+  exception: MyString
+  resource: two

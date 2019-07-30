@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_234356) do
+ActiveRecord::Schema.define(version: 2019_07_30_021504) do
+
+  create_table "logs", force: :cascade do |t|
+    t.string "response_code"
+    t.string "response_body"
+    t.string "exception"
+    t.integer "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_id"], name: "index_logs_on_resource_id"
+  end
 
   create_table "resources", force: :cascade do |t|
     t.string "url"

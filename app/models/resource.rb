@@ -1,7 +1,11 @@
 class Resource < ApplicationRecord
   require 'httparty'
+
   after_create_commit :calculate_next_execution
+
   belongs_to :user
+  has_many :logs
+
   enum nature: ['hours', 'minutes']
   enum status: ['neutral', 'up', 'down']
 
@@ -31,15 +35,32 @@ class Resource < ApplicationRecord
       case response.code
       when 200
         set_status_as_up
+        create_log(response, nil)
       else
         set_status_as_down
+        create_log(response, nil)
       end
     rescue Exception => e
-      puts 'Exception is here'
       set_status_as_down
+      create_log(nil, e)
     end
 
     calculate_next_execution
+  end
+
+  def create_log(response, exception)
+    puts 'Creating log'
+    if exception
+      Log.create(resource: self,
+                 response_code: nil,
+                 response_body: nil,
+                 exception: exception.to_s)
+    else
+      Log.create(resource: self,
+                 response_code: response.code,
+                 response_body: response.body,
+                 exception: nil)
+    end
   end
 
 end

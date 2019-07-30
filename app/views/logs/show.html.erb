@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Response code:</strong>
+  <%= @log.response_code %>
+</p>
+
+<p>
+  <strong>Response body:</strong>
+  <%= @log.response_body %>
+</p>
+
+<p>
+  <strong>Exception:</strong>
+  <%= @log.exception %>
+</p>
+
+<p>
+  <strong>Resource:</strong>
+  <%= @log.resource %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>
