@@ -32,7 +32,8 @@
 
   <%= render 'partials/dashboards/shared/offset/offset_area' %>
 <% else %>
-  <%= render 'partials/dashboards/external_area/login_area' %>
+  <%#= render 'partials/dashboards/external_area/login_area' %>
+  <%= yield %>
 <% end %>
 
 <%= javascript_include_tag 'srt', 'data-turbolinks-track': 'reload' %>

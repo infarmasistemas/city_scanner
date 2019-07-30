@@ -26,12 +26,16 @@ class Resource < ApplicationRecord
 
   def check_resource
     puts "Checking resource: #{url}"
-    response = HTTParty.get(url)
-
-    case response.code
-    when 200
-      set_status_as_up
-    else
+    begin
+      response = HTTParty.get(url)
+      case response.code
+      when 200
+        set_status_as_up
+      else
+        set_status_as_down
+      end
+    rescue Exception => e
+      puts 'Exception is here'
       set_status_as_down
     end
 

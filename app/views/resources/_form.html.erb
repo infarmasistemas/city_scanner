@@ -1,37 +1,46 @@
-<%= form_with(model: resource, local: true) do |form| %>
-  <% if resource.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+<%= render 'partials/dashboards/shared/alerts/alert_item' %>
 
-      <ul>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <!-- basic form start -->
+  <div class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Resource</h4>
+        <%= form_with(model: resource, local: true) do |form| %>
+          <% if resource.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+              <ul>
+                <% resource.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Resource URL</label>
+            <%= form.text_field :url, type: 'text', class: 'form-control', placeholder: 'Enter URL' %>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Interval</label>
+            <%= form.text_field :interval, type: 'number', class: 'form-control', placeholder: 'Enter interval' %>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nature</label>
+            <%= form.select :nature, ['hours', 'minutes'], {}, { :class => 'form-control' } %>
+          </div>
+
+          <%= form.hidden_field :user_id, value: current_user.id %>
+
+          <%= form.submit class: 'btn btn-primary mt-4 pr-4 pl-4' %>
+          <%= link_to 'Back', resources_path, class: 'btn btn-info mt-4 pr-4 pl-4' %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :interval %>
-    <%= form.number_field :interval %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nature %>
-    <%= form.text_field :nature %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
