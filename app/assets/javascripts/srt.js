@@ -14,4 +14,5 @@
 //= require channels/websocket.coffee
 //= require srt/toastr.min
 //= require srt/zoom
+//= require srt/prism
 //= require srt/jquery.mask.min

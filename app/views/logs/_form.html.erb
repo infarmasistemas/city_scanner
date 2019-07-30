@@ -20,6 +20,11 @@
           <% end %>
 
           <div class="form-group">
+            <label for="exampleInputEmail1">Log Created At</label>
+            <%= form.text_field :created_at, type: 'text', class: 'form-control', placeholder: 'Enter URL', disabled: '' %>
+          </div>
+
+          <div class="form-group">
             <label for="exampleInputEmail1">Response CODE</label>
             <%= form.text_field :response_code, type: 'text', class: 'form-control', placeholder: 'Enter URL', disabled: '' %>
           </div>
