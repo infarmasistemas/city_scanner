@@ -5,7 +5,8 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resources::ResourcesIndex
+                     .index(params).page(params[:page]).per(10)
   end
 
   # GET /resources/1
@@ -63,13 +64,14 @@ class ResourcesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_resource
-      @resource = Resource.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def resource_params
-      params.require(:resource).permit(:url, :interval, :nature, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def resource_params
+    params.require(:resource).permit(:url, :interval, :nature, :user_id)
+  end
 end
