@@ -21,10 +21,12 @@ class Resource < ApplicationRecord
   end
 
   def set_status_as_up
+    notification_resource_up
     update(status: 'up')
   end
 
   def set_status_as_down
+    notification_resource_down
     update(status: 'down')
   end
 
@@ -61,6 +63,15 @@ class Resource < ApplicationRecord
                  response_body: response.body,
                  exception: nil)
     end
+  end
+
+  def notification_resource_down
+    puts 'Resource is DOWN'
+    ResourceDownNotificationJob.perform_later(id)
+  end
+
+  def notification_resource_up
+    ResourceDownNotificationJob.perform_later(id) if status == 'down'
   end
 
 end

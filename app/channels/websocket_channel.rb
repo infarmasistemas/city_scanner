@@ -4,6 +4,10 @@ class WebsocketChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    puts 'unsubscribed'
+    puts "unsubs"
+  end
+
+  def send_message(data)
+    puts "HAHUAUH"
   end
 end

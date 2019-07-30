@@ -3,7 +3,6 @@ $(document).on('turbolinks:load', ->
     console.log('Updating pages')
     if $('#dashboard_page')[0] != undefined
       $('#dashboard_page')[0].click()
-
     return
 
   toastrNotification = (data) ->
@@ -16,14 +15,15 @@ $(document).on('turbolinks:load', ->
       "preventDuplicates": true,
       "onclick": null,
       "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "6000",
+      "hideDuration": "5000",
+      "timeOut": "8000",
       "extendedTimeOut": "1000",
       "showEasing": "swing",
       "hideEasing": "linear",
       "showMethod": "fadeIn",
       "hideMethod": "fadeOut"
     }
+    console.log(data)
     toastr[data['type']](data['content'], data['title'])
     return
 

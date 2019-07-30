@@ -11,6 +11,7 @@
 //= require srt/plugins.js
 //= require srt/scripts.js
 //= require srt/ui-animations.js
+//= require channels/websocket.coffee
 //= require srt/toastr.min
 //= require srt/zoom
 //= require srt/jquery.mask.min
