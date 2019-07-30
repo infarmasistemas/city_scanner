@@ -1,0 +1,6 @@
+<%= form_tag(url, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: placeholder do %>
+    <%= submit_tag %>
+  <% end %>
+  <i class="ti-search"></i>
+<% end %>

@@ -1,0 +1,16 @@
+//= require srt/popper.min.js
+//= require srt/bootstrap.min.js
+//= require srt/owl.carousel.min.js
+//= require srt/metisMenu.min.js
+//= require srt/jquery.slimscroll.min.js
+//= require srt/jquery.slicknav.min.js
+//= require srt/line-chart.js
+//= require srt/pie-chart.js
+//= require srt/bar-chart.js
+//= require srt/maps.js
+//= require srt/plugins.js
+//= require srt/scripts.js
+//= require srt/ui-animations.js
+//= require srt/toastr.min
+//= require srt/zoom
+//= require srt/jquery.mask.min

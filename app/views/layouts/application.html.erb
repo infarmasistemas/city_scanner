@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>CityScanner</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>City Scanner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'srt', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<body id="<%= yield :body_id %>">
 
-  <body>
-    <%= yield %>
-  </body>
+<% if current_user %>
+
+  <div class="page-container">
+    <%= render 'partials/dashboards/admin_dashboard/sidebar/sidebar' %>
+
+    <div class="main-content">
+      <%= render 'partials/dashboards/shared/header/header_area' %>
+      <%= render 'partials/dashboards/admin_dashboard/page/page_title_area' %>
+      <div class="main-content-inner">
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render 'partials/dashboards/shared/footer/footer' %>
+  </div>
+
+  <%= render 'partials/dashboards/shared/offset/offset_area' %>
+<% else %>
+  <%= render 'partials/dashboards/external_area/login_area' %>
+<% end %>
+
+<%= javascript_include_tag 'srt', 'data-turbolinks-track': 'reload' %>
+</body>
 </html>

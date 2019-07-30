@@ -1,0 +1,125 @@
+<!--================ Header Menu Area start =================-->
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container box_1620">
+        <a class="navbar-brand logo_h" href="/">
+          <%= image_tag 'sneaky/logo-trust-store.png', alt: '', class: 'mx-auto d-block', size: '190x30' %>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav justify-content-end">
+            <% if action_name == 'index' %>
+              <li id="home" class="nav-item">
+                <a class="cursor-pointer nav-link">Home</a>
+              </li>
+              <li id="blog" class="nav-item">
+                <a class="cursor-pointer nav-link">News</a>
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link' do %>
+                  About
+                <% end %>
+              </li>
+              <li id="owners" class="nav-item">
+                <a class="cursor-pointer nav-link">Creators</a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to root_path, class: 'nav-link' do %>
+                  Home
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to root_path + "#blog-section", class: 'nav-link' do %>
+                  News
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link' do %>
+                  About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to root_path + "#creators-section", class: 'nav-link' do %>
+                  Creators
+                <% end %>
+              </li>
+            <% end %>
+
+            <!--<h1>Home#index</h1>-->
+            <!--<p>Find me in app/views/home/partials/index.html.erb</p>-->
+
+            <% if current_user %>
+              <li class="nav-item submenu dropdown">
+                <%= link_to '#', class: 'cursor-pointer nav-link', data: {toggle: 'dropdown'}, aria: {haspopup: 'true', expanded: 'false'}, role: 'button' do %>
+                  <%= current_user.name %> <i class="ti-arrow-down"></i>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <li class="nav-item">
+                    <% if current_user.profile(:administrator) %>
+                      <%= link_to dashboard_administrator_path, class: 'nav-link' do %>
+                        My Dashboard
+                      <% end %>
+                    <% end %>
+
+                    <% if current_user.profile(:owner) %>
+                      <%= link_to dashboard_owner_path, class: 'nav-link' do %>
+                        My Dashboard
+                      <% end %>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to 'Log out', destroy_user_session_path, class: 'nav-link', method: :delete %>
+                  </li>
+                </ul>
+              </li>
+
+            <% else %>
+              <li id="owners" class="nav-item">
+                <%= link_to user_session_path, class: 'cursor-pointer nav-link' do %>
+                  Login
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<script>
+    $("#home").click(function () {
+        scrollUntil('home-section', -100, 500);
+    });
+
+    $("#blog").click(function () {
+        scrollUntil('blog-section', -200, 500);
+    });
+
+    $("#about").click(function () {
+        scrollUntil('about-section', -200, 500);
+    });
+
+    $("#contact").click(function () {
+        scrollUntil('contact-section', -100, 500);
+    });
+
+    $("#owners").click(function () {
+        scrollUntil('creators-section', -150, 500);
+    });
+
+    function scrollUntil(id, offset, time) {
+        var offset = offset; //Offset of 20px
+
+        $('html, body').animate({
+            scrollTop: $("#" + id).offset().top + offset
+        }, time);
+    }
+</script>
+<!--================Header Menu Area =================-->
