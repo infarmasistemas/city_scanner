@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_07_30_021504) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "logs", force: :cascade do |t|
     t.string "response_code"
     t.string "response_body"
     t.string "exception"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_logs_on_resource_id"
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_021504) do
     t.integer "nature"
     t.datetime "next_execution"
     t.integer "status", default: 0
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_resources_on_user_id"
@@ -46,4 +49,6 @@ ActiveRecord::Schema.define(version: 2019_07_30_021504) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "logs", "resources"
+  add_foreign_key "resources", "users"
 end

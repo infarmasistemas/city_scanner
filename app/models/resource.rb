@@ -2,9 +2,10 @@ class Resource < ApplicationRecord
   require 'httparty'
 
   after_create_commit :calculate_next_execution
+  after_update_commit :update_pages
 
   belongs_to :user
-  has_many :logs
+  has_many :logs, dependent: :destroy
 
   enum nature: ['hours', 'minutes']
   enum status: ['neutral', 'up', 'down']
@@ -32,6 +33,7 @@ class Resource < ApplicationRecord
 
   def check_resource
     puts "Checking resource: #{url}"
+    response = {}
     begin
       response = HTTParty.get(url)
       case response.code
@@ -44,23 +46,23 @@ class Resource < ApplicationRecord
       end
     rescue Exception => e
       set_status_as_down
-      create_log(nil, e)
+      create_log(response, e)
     end
 
     calculate_next_execution
   end
 
   def create_log(response, exception)
-    puts 'Creating log'
+    puts 'Creating log' + response.code.to_s
     if exception
       Log.create(resource: self,
-                 response_code: nil,
-                 response_body: nil,
+                 response_code: response.code.to_s,
+                 response_body: response.body.to_s,
                  exception: exception.to_s)
     else
       Log.create(resource: self,
-                 response_code: response.code,
-                 response_body: response.body,
+                 response_code: response.code.to_s,
+                 response_body: response.body.to_s,
                  exception: nil)
     end
   end
@@ -71,7 +73,11 @@ class Resource < ApplicationRecord
   end
 
   def notification_resource_up
-    ResourceDownNotificationJob.perform_later(id) if status == 'down'
+    ResourceUpNotificationJob.perform_later(id) if status == 'down'
+  end
+
+  def update_pages
+    UpdatePagesJob.perform_later(user_id)
   end
 
 end

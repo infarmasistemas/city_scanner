@@ -7,11 +7,12 @@ module Resources
     end
 
     def index
-      Resource
-          .where('LOWER(url) LIKE LOWER(?) ' \
-                   'OR LOWER(status) LIKE LOWER(?)',
-                 "%#{params[:search]}%",
-                 "%#{params[:search]}%")
+      if params[:search].present? and params[:search].size.positive?
+        return search
+      end
+
+
+      Resource.all
     end
 
     def search
