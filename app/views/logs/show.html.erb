@@ -1,24 +1,3 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :area_title, 'Showing Log' %>
 
-<p>
-  <strong>Response code:</strong>
-  <%= @log.response_code %>
-</p>
-
-<p>
-  <strong>Response body:</strong>
-  <%= @log.response_body %>
-</p>
-
-<p>
-  <strong>Exception:</strong>
-  <%= @log.exception %>
-</p>
-
-<p>
-  <strong>Resource:</strong>
-  <%= @log.resource %>
-</p>
-
-<%= link_to 'Edit', edit_log_path(@log) %> |
-<%= link_to 'Back', logs_path %>
+<%= render 'form', log: @log %>

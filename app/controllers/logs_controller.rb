@@ -5,7 +5,8 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all
+    @logs = Logs::LogsIndex
+                .index(params).page(params[:page]).per(10)
   end
 
   # GET /logs/1
@@ -63,13 +64,14 @@ class LogsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_log
-      @log = Log.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def log_params
-      params.require(:log).permit(:response_code, :response_body, :exception, :resource_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_log
+    @log = Log.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def log_params
+    params.require(:log).permit(:response_code, :response_body, :exception, :resource_id)
+  end
 end

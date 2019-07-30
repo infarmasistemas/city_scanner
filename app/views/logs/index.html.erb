@@ -1,33 +1,59 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :area_title, 'Logs' %>
 
-<h1>Logs</h1>
+<%= render 'search_partial' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Response code</th>
-      <th>Response body</th>
-      <th>Exception</th>
-      <th>Resource</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @logs.each do |log| %>
-      <tr>
-        <td><%= log.response_code %></td>
-        <td><%= log.response_body %></td>
-        <td><%= log.exception %></td>
-        <td><%= log.resource %></td>
-        <td><%= link_to 'Show', log %></td>
-        <td><%= link_to 'Edit', edit_log_path(log) %></td>
-        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Log', new_log_path %>
+<div class="row">
+  <!-- Progress Table start -->
+  <div class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Logs</h4>
+        <div class="single-table">
+          <div class="table-responsive">
+            <table class="table table-hover progress-table text-center">
+              <thead class="text-uppercase">
+              <tr>
+                <th scope="col">ID</th>
+                <th>Response code</th>
+                <th>Response body</th>
+                <th>Exception</th>
+                <th>Resource</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @logs.each do |log| %>
+                <tr>
+                  <td><%= log.id %></td>
+                  <td><%= log.response_code %></td>
+                  <td><%= log.response_body[0..50] %></td>
+                  <td><%= log.exception %></td>
+                  <td><%= log.resource.url %></td>
+                  <td>
+                    <ul class="d-flex justify-content-center">
+                      <li class="mr-3">
+                        <%= link_to log do %>
+                          <i class="fa fa-search"></i> Show
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to log, method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger' do %>
+                          <i class="ti-trash"></i> Delete
+                        <% end %>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <ul class="pagination justify-content-center" style="margin:20px 0">
+              <%= paginate @logs %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Progress Table end -->
+</div>

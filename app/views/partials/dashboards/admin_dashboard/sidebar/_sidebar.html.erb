@@ -20,6 +20,11 @@
               <i class="fa fa-arrows"></i> <span>Resources</span>
             <% end %>
           </li>
+          <li class="<%= "active" if controller_name == "logs" %>">
+            <%= link_to logs_path do %>
+              <i class="fa fa-file-text"></i> <span>Logs</span>
+            <% end %>
+          </li>
         </ul>
       </nav>
     </div>
