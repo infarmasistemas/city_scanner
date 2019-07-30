@@ -1,0 +1,64 @@
+<%= content_for :area_title, 'Resources' %>
+
+<div class="row">
+  <!-- Progress Table start -->
+  <div class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Resources</h4>
+        <div class="single-table">
+          <div class="table-responsive">
+            <table class="table table-hover progress-table text-center">
+              <thead class="text-uppercase">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">URL</th>
+                <th scope="col">Interval Check</th>
+                <th scope="col">Nature</th>
+                <th scope="col">Next Check</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% resources.each do |resource| %>
+                <tr>
+                  <td><%= resource.id %></td>
+                  <td><%= resource.url %></td>
+                  <td><%= resource.interval %></td>
+                  <td><%= resource.nature.humanize %></td>
+                  <td><%= resource.next_execution %></td>
+                  <td>
+                    <span class="status-p bg-<%= class_by_resource_status(resource) %>"><%= resource.status %></span>
+                  </td>
+                  <td>
+                    <ul class="d-flex justify-content-center">
+                      <li class="mr-3">
+                        <%= link_to resource.url, target: :_blank  do %>
+                          <i class="fa fa-search"></i> Visit
+                        <% end %>
+                      </li>
+                      <li class="mr-3">
+                        <%= link_to edit_resource_path(resource) do %>
+                          <i class="fa fa-edit"></i> Edit
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to resource, method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger' do %>
+                          <i class="ti-trash"></i> Delete
+                        <% end %>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= link_to 'New Resource', new_resource_path, class: 'btn btn-primary mb-3 mt-3', role: 'button' %>
+  </div>
+  <!-- Progress Table end -->
+</div>

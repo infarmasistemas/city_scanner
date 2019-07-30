@@ -10,6 +10,12 @@
     <div class="menu-inner">
       <nav>
         <ul class="metismenu" id="menu">
+          <li class="<%= "active" if controller_name == "dashboard" %>">
+            <%= link_to dashboard_index_path do %>
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <% end %>
+          </li>
+
           <li class="<%= "active" if controller_name == "resources" %>">
             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Resources
                                     </span></a>
