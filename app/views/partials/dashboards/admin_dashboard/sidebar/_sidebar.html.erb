@@ -25,6 +25,11 @@
               <i class="fa fa-file-text"></i> <span>Logs</span>
             <% end %>
           </li>
+          <li class="<%= "active" if controller_name == "contacts" %>">
+            <%= link_to contacts_path do %>
+              <i class="fa fa-group"></i> <span>Contacts</span>
+            <% end %>
+          </li>
         </ul>
       </nav>
     </div>

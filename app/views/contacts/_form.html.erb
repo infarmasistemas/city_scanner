@@ -1,0 +1,36 @@
+<%= render 'partials/dashboards/shared/alerts/alert_item' %>
+
+<div class="row">
+  <!-- basic form start -->
+  <div class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Contacts</h4>
+        <%= form_with(model: contact, local: true) do |form| %>
+          <% if contact.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+              <ul>
+                <% contact.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <label for="exampleInputEcontact1">Address</label>
+            <%= form.text_field :address, type: 'text', class: 'form-control', placeholder: 'Enter address' %>
+          </div>
+
+          <%= form.hidden_field :user_id, value: current_user.id %>
+
+          <%= form.submit class: 'btn btn-primary mt-4 pr-4 pl-4' %>
+          <%= link_to 'Back', contacts_path, class: 'btn btn-info mt-4 pr-4 pl-4' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

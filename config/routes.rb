@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   resources :logs
   get 'dashboard/index'
   resources :resources

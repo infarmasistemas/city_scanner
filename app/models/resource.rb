@@ -23,11 +23,13 @@ class Resource < ApplicationRecord
 
   def set_status_as_up
     notification_resource_up
+    email_resource_up
     update(status: 'up')
   end
 
   def set_status_as_down
     notification_resource_down
+    email_resource_down
     update(status: 'down')
   end
 
@@ -73,7 +75,17 @@ class Resource < ApplicationRecord
   end
 
   def notification_resource_up
-    ResourceUpNotificationJob.perform_later(id) if status == 'down'
+    ResourceUpNotificationJob.perform_later(id) if status != 'up'
+  end
+
+  def email_resource_down
+    puts 'Shooting email - Resource Down'
+    ResourceDownMailJob.perform_later(id) if status != 'down'
+  end
+
+  def email_resource_up
+    puts 'Shooting email - Resource Up'
+    ResourceUpMailJob.perform_later(id) if status != 'up'
   end
 
   def update_pages
