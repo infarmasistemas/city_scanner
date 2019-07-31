@@ -17,9 +17,7 @@ module Contacts
 
     def search
       Contact
-          .where('LOWER(address) LIKE LOWER(?) ' \
-                   'OR LOWER(stats) LIKE LOWER(?)',
-                 "%#{params[:search]}%",
+          .where('LOWER(address) LIKE LOWER(?)',
                  "%#{params[:search]}%")
     end
   end
