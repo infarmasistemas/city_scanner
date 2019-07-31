@@ -1,12 +1,13 @@
 class ResourcesController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
   # GET /resources
   # GET /resources.json
   def index
     @resources = Resources::ResourcesIndex
-                     .index(params).page(params[:page]).per(10)
+                     .index(params, current_ability)
+                     .page(params[:page]).per(10)
   end
 
   # GET /resources/1

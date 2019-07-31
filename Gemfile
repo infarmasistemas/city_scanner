@@ -36,15 +36,22 @@ gem 'redis', '~> 4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Very good login solution
 gem 'devise'
 
+# To manage the cron task
 gem 'whenever', require: false
 
+# To make requests
 gem 'httparty'
 
 gem 'jquery-rails'
 
+# Cool pagination solution
 gem 'kaminari'
+
+# To deal with permissions
+gem 'cancancan'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

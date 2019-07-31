@@ -1,11 +1,13 @@
 class ContactsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
   def index
     @contacts = Contacts::ContactsIndex
-                    .index(params).page(params[:page]).per(10)
+                    .index(params, current_ability)
+                    .page(params[:page]).per(10)
   end
 
   # GET /contacts/1

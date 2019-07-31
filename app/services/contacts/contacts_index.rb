@@ -1,9 +1,10 @@
 module Contacts
   class ContactsIndex < ApplicationService
-    attr_accessor :params, :search_results
+    attr_accessor :params, :current_ability, :search_results
 
-    def initialize(params)
+    def initialize(params, current_ability)
       self.params = params
+      self.current_ability = current_ability
     end
 
     def index
@@ -12,11 +13,12 @@ module Contacts
       end
 
 
-      Contact.all
+      Contact.all.accessible_by(current_ability)
     end
 
     def search
       Contact
+          .accessible_by(current_ability)
           .where('LOWER(address) LIKE LOWER(?)',
                  "%#{params[:search]}%")
     end

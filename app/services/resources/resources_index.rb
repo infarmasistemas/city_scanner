@@ -1,9 +1,10 @@
 module Resources
   class ResourcesIndex < ApplicationService
-    attr_accessor :params, :search_results
+    attr_accessor :params, :current_ability, :search_results
 
-    def initialize(params)
+    def initialize(params, current_ability)
       self.params = params
+      self.current_ability = current_ability
     end
 
     def index
@@ -12,11 +13,12 @@ module Resources
       end
 
 
-      Resource.all
+      Resource.all.accessible_by(current_ability)
     end
 
     def search
       Resource
+          .accessible_by(current_ability)
           .where('LOWER(url) LIKE LOWER(?) ' \
                    'OR LOWER(status) LIKE LOWER(?)',
                  "%#{params[:search]}%",

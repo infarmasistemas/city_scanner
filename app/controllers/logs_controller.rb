@@ -1,12 +1,13 @@
 class LogsController < ApplicationController
-  before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_log, only: [:show, :edit, :update, :destroy]
 
   # GET /logs
   # GET /logs.json
   def index
     @logs = Logs::LogsIndex
-                .index(params).page(params[:page]).per(10)
+                .index(params, current_ability)
+                .page(params[:page]).per(10)
   end
 
   # GET /logs/1
