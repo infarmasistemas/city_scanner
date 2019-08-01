@@ -14,6 +14,7 @@ Knowing that something like that probably existed, I decided to come up with my 
     Notifications on screen whenever a URL is down and when it's back up
     Email notifications when URLs go down and when they come back up (so as not to clog your email box)
     You can setup a list of email addresses to be contacted when a change in status occurs
+    Users can only work with resources related to their user IDs
 
 ## Regarding notifications (toastr, email...)
 
@@ -27,7 +28,6 @@ A notification (email or otherwise) is sent whenever a status change occurs.
 
 ### TO DO
 
-    Limit user access according to permissions (can only see their own logs, their own URLs registered. CANCANCAN)
     Sound warning whenever a URL's status changes
     Write tests 
 
