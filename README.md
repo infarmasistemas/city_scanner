@@ -15,6 +15,7 @@ Knowing that something like that probably existed, I decided to come up with my 
     Email notifications when URLs go down and when they come back up (so as not to clog your email box)
     You can setup a list of email addresses to be contacted when a change in status occurs
     Users can only work with resources related to their user IDs
+    Sound warning whenever a URL's status changes
 
 ## Regarding notifications (toastr, email...)
 
@@ -28,7 +29,6 @@ A notification (email or otherwise) is sent whenever a status change occurs.
 
 ### TO DO
 
-    Sound warning whenever a URL's status changes
     Write tests 
 
 ## Getting Started
