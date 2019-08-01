@@ -15,4 +15,5 @@
 //= require srt/toastr.min
 //= require srt/zoom
 //= require srt/prism
+//= require srt/howler.min
 //= require srt/jquery.mask.min

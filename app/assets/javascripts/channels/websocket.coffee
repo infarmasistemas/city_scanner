@@ -1,4 +1,14 @@
 $(document).on('turbolinks:load', ->
+  playAudio = ->
+    $(".audio-play")[0].currentTime = 0;
+    return $(".audio-play")[0].play();
+    return
+
+  notifications = (data) ->
+    playAudio()
+    toastrNotification(data)
+    return
+
   updatePages = ->
     console.log('Updating pages')
     if $('#dashboard_page')[0] != undefined
@@ -38,5 +48,5 @@ $(document).on('turbolinks:load', ->
       console.log("Don't know how to deal with:" + JSON.stringify(data));
       switch data['type']
         when 'update_pages' then updatePages()
-        when 'notification' then toastrNotification(data['body'])
+        when 'notification' then notifications(data['body'])
 )

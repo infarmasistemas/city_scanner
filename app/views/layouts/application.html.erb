@@ -35,7 +35,7 @@
 <% else %>
   <%= yield %>
 <% end %>
-
+<%= audio_tag "warning.wav", class: "audio-play" %>
 <%= javascript_include_tag 'srt', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>
