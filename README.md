@@ -1,22 +1,3 @@
-# README
-
-
-
-This is a basic solution to monitor web pages and stuff.
-
-To Do:
-
-    Limit user access according to permissions (can only see their own logs, their own URLs registered. CANCANCAN)
-    Sound warning whenever a URL's status changes 
-    
-What you get:
-
-    Ability to monitor URLs 
-    Notifications on screen whenever a URL is down and when it's back up
-    Email notifications when URLs go down and back UP
-        You can setup a list of emails to be contacted when this occurs
-    
-    
 # City Scanner - A very basic URL montoring tool
 
 ## Why
