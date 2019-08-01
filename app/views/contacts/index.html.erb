@@ -30,11 +30,21 @@
                   <td>
                     <ul class="d-flex justify-content-center">
                       <li class="mr-3">
+                        <%= link_to contact_path(contact, contact: {status: 'active'}), method: :put, data: {confirm: 'Are you sure?'} do %>
+                          <i class="fa fa-check"></i> Activate
+                        <% end %>
+                      </li>
+                      <li class="mr-3">
+                        <%= link_to contact_path(contact, contact: {status: 'inactive'}), method: :put, data: {confirm: 'Are you sure?'} do %>
+                          <i class="fa fa-close"></i> Deactivate
+                        <% end %>
+                      </li>
+                      <li class="mr-3">
                         <%= link_to edit_contact_path(contact) do %>
                           <i class="fa fa-edit"></i> Edit
                         <% end %>
                       </li>
-                      <li>
+                      <li class="mr-3">
                         <%= link_to contact, method: :delete, data: {confirm: 'Are you sure?'}, class: 'text-danger' do %>
                           <i class="ti-trash"></i> Delete
                         <% end %>

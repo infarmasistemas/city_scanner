@@ -2,7 +2,7 @@ class ResourcesMailer < ApplicationMailer
   def resource_up_mail(resource)
     @resource = resource
 
-    @resource.user.contacts.each do |contact|
+    @resource.user.contacts.active.each do |contact|
       mail(to: contact.address,
            subject: "Resource is back up - #{@resource.id}")
     end
@@ -11,7 +11,7 @@ class ResourcesMailer < ApplicationMailer
   def resource_down_mail(resource)
     @resource = resource
 
-    @resource.user.contacts.each do |contact|
+    @resource.user.contacts.active.each do |contact|
       mail(to: contact.address,
            subject: "Resource is DOWN - #{@resource.id}")
     end

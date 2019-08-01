@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+
   resources :contacts
   resources :logs
-  get 'dashboard/index'
   resources :resources
 
   root to: 'dashboard#index'
