@@ -3,8 +3,10 @@
     <div class="login-box ptb--100">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <div class="login-form-head">
-          <h4>Forgot your Password?</h4>
-          <p>Fill the form below to recover your password</p>
+          <%= image_tag 'logo.png', class: 'img-fluid mb-3' %>
+
+          <h4>Esqueceu sua senha?</h4>
+          <p>Preencha o formulário abaixo para recuperar sua senha</p>
         </div>
 
         <%= render 'devise/shared/alerts' %>
@@ -12,7 +14,7 @@
 
         <div class="login-form-body">
           <div class="form-gp">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Endereço de e-mail</label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             <i class="ti-email"></i>
           </div>
@@ -37,7 +39,7 @@
             </div>
           </div>
           <div class="submit-btn-area">
-            <button id="form_submit" type="submit">Send me reset password instructions <i class="ti-arrow-right"></i></button>
+            <button id="form_submit" type="submit">Enviar instruções de redefinição de senha <i class="ti-arrow-right"></i></button>
           </div>
           <div class="mt-3">
             <%= render "devise/shared/links" %>
