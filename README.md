@@ -1,4 +1,4 @@
-# City Scanner - A very basic URL montoring tool
+# City Scanner - A very basic URL monitoring tool
 
 ## Why
 
