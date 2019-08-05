@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# The user data below is simply an example, should be changed as needed.
+User.find_or_create_by!(email: 'infarma@infarma.com', password: '123456')
